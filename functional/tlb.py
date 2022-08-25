@@ -536,7 +536,7 @@ def prime_prune_probe_profiling(c, iterations=150, set_size=50):
 def ppp_wrapper(set_size):#
     print(f"Starting {set_size}")
     c = Cache(4, 4, replacement_policy="RPLRU")
-    return prime_prune_probe_profiling(c, iterations=1000, set_size=set_size)
+    return prime_prune_probe_profiling(c, iterations=4000, set_size=set_size)
 ### Main
 
 configs = {}
@@ -547,10 +547,10 @@ configs["w=4, N=64"]=Cache(4, 4, replacement_policy="RPLRU")
 #configs["w=8, N=1024"]= Cache(8, 7, replacement_policy="RPLRU")
 
 # Figure 5
-boxplot_eviction()
+#boxplot_eviction()
 #exit(1)
 # Figure 7
-prime_and_prune_once(configs, iterations=5000)
+#prime_and_prune_once(configs, iterations=5000)
 # exit()
 
 # Figure 8 (but with 15000 runs instead of 100000)
@@ -563,7 +563,7 @@ for name, c in configs.items():
     #print(misses)
     for l in misses:
         res.append(min(filter(lambda x: x != float("nan"), l), default=float("nan")))
-    success_res = success_rate
+    success_res.extend(success_rate)
     #exit()
     #for set_size in range(25, c.ways * c.lines):
     #    print(f"Step {set_size}")
@@ -589,7 +589,7 @@ for name, c in configs.items():
     ax.set_ylim(0,c.ways*2**c.idx_width*3)
 
     ticks = list((ax.get_yticks())) + [c.ways*2**c.idx_width]
-    ticks.remove(1000)
+    ticks.remove(64)
     ax.set_yticks(ticks)
     plt.savefig(f'ppp_profiling_w={c.ways}_N={c.ways*2**c.idx_width}.png')
 
