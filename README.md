@@ -11,10 +11,10 @@ We give a brief example how to use it in the following.
     python3-dev python-is-python3 libboost-all-dev pkg-config
    ```
    For older operating systems, see the [official gem5 documentation](https://www.gem5.org/documentation/general_docs/building).
-2. *Building gem5:* To build gem5, simply run 
+2. *Building gem5:* To build gem5, simply go to the `tlbsec_gem5/` folder and run 
    ```scons build/RISCV/gem5.opt --ignore-style -j[Cores]```
 3. *Building m5term:* Go to `tlbsec_gem5/util/term` and run `make`.
-4. *Running the Full System Simulation:* To start the full system simulation, go to the `tlbcoat_boot/` folder and run 
+4. *Running the Full System Simulation:* To start the full system simulation, go to the `tlbsec_riscv_boot/` folder and run 
    ```
    ../tlbsec_gem5/build/RISCV/gem5.opt ../tlbsec_gem5/configs/example/riscv/fs_linux.py --kernel=./bbl --caches --mem-size=256MB --mem-type=DDR4_2400_8x8 --cpu-type=TimingSimpleCPU --disk-image=./riscv_parsec_disk -n 1
    ```
