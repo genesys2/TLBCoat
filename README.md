@@ -31,9 +31,16 @@ TLB (not randomized) and the randomized TLB using the `#define SATLB 1` - if SAT
 If it is not defined, the randomized TLB is used. Remember to re-build gem5 after changing this. 
 ​
 
-# TLBCoat under load
-​
-The test setup is the same as in the paper. Instead of just running a benchmark in isolation, we spawned the blackscholes benchmark in an endless loop to generate load. Then, we started different benchmarks using the simsmall workload and measured the miss ratio, which is now affected by the TLB usage of the background application.
+# TLBCoat Under Load
+
+​We ran the benchmarks in the gem5 simulation environment with additional system load. 
+Therefore, we use the same system configuration as in the paper.
+Instead of only running a single benchmark on the simulated system, we spawned the blackscholes benchmark in an endless loop to generate system load (we chose blackscholes because it is the first one alphabetically, it would be possible to chosse any other load). 
+Then, we started different benchmarks using the simsmall workload and measured the overall TLB miss rate, which is now affected by the TLB usage of the background application. 
+We choose the miss rate as a metric since it allows directly comparing the TLB performance. 
+Using e.g. the cycle count, it would be harder to actually draw conclusions about the TLB performance since running 
+two benchmarks on a single core obviously increases the runtime and the more or less random scheduling decisions can impact
+the results severely. 
 ​
 | Benchmark   | SA TLB LRU  | TLBCoat RPLU |
 | ----------- | ----------- | ------------ |
@@ -42,7 +49,8 @@ The test setup is the same as in the paper. Instead of just running a benchmark 
 | canneal| 3%     | 3.7%      |
 | freqmine | 0.21%     | 0.30%    |
 
-The table shows, that the overall miss rate is not significantly affected. 
+The table shows the miss rate for a time-shared system under load for different benchmarks. 
+The overall miss rate is similar to the results from the unloaded system evaluated in the paper (Tab. 2).
 Tthat is, since most of the benchmarks only rely on few pages that remain cached even with two benchmarks running. 
 Moreover, it shows that the miss rate remains similar for set-associative TLBs and TLBcoat. 
 ​That is, since the re-randomization is done per process by changing the rid and therefore,
