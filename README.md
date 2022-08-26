@@ -51,9 +51,9 @@ the results severely.
 
 The table shows the miss rate for a time-shared system under load for different benchmarks. 
 The overall miss rate is similar to the results from the unloaded system evaluated in the paper (Tab. 2).
-Tthat is, since most of the benchmarks only rely on few pages that remain cached even with two benchmarks running. 
+That is, since most of the benchmarks only rely on few pages that remain cached even with two benchmarks running. 
 Moreover, it shows that the miss rate remains similar for set-associative TLBs and TLBcoat. 
-​That is, since the re-randomization is done per process by changing the rid and therefore,
+The reason for this is, that the re-randomization is done per process by changing the rid and therefore,
 a high miss rate in one process does not cause re-randomization in the other process.  
 
 
